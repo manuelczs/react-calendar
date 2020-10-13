@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { FaPlus, FaEdit } from "react-icons/fa";
+import React, { Component } from 'react';
+import { FaPlus, FaEdit } from 'react-icons/fa';
 
 class AddAppointments extends Component {
   constructor() {
     super();
     this.state = {
-      petName: "",
-      ownerName: "",
-      aptDate: "",
-      aptTime: "",
-      aptNotes: ""
+      petName: '',
+      ownerName: '',
+      aptDate: '',
+      aptTime: '',
+      aptNotes: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -21,28 +21,27 @@ class AddAppointments extends Component {
     let tempApt = {
       petName: this.state.petName,
       ownerName: this.state.ownerName,
-      aptDate: this.state.aptDate + " " + this.state.aptTime,
-      aptNotes: this.state.aptNotes
+      aptDate: this.state.aptDate + ' ' + this.state.aptTime,
+      aptNotes: this.state.aptNotes,
     };
 
     this.props.addAppointment(tempApt);
     this.setState({
-      petName: "",
-      ownerName: "",
-      aptDate: "",
-      aptTime: "",
-      aptNotes: ""
+      petName: '',
+      ownerName: '',
+      aptDate: '',
+      aptTime: '',
+      aptNotes: '',
     });
     this.props.toggleForm();
   }
 
-  handleChange(e) {
-    const target = e.target;
+  handleChange({ target }) {
     const value = target.value;
     const name = target.name;
 
     this.setState({
-      [name]: value
+      [name]: value,
     });
   }
 
@@ -50,8 +49,8 @@ class AddAppointments extends Component {
     return (
       <div
         className={
-          "card textcenter mt-3 " +
-          (this.props.formDisplay ? "" : "add-appointment")
+          'card textcenter mt-3 ' +
+          (this.props.formDisplay ? '' : 'add-appointment')
         }
       >
         <div>
@@ -108,7 +107,7 @@ class AddAppointments extends Component {
                   name="aptDate"
                   id="aptDate"
                   value={this.state.aptDate}
-                  value={this.handleChange}
+                  onChange={this.handleChange}
                 />
               </div>
 
@@ -145,7 +144,7 @@ class AddAppointments extends Component {
                   type="submit"
                   className="btn btn-primary d-block ml-auto"
                 >
-                  Agregar entrada
+                  Agregar
                 </button>
               </div>
             </div>
