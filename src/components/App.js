@@ -4,7 +4,7 @@ import SearchAppointments from '../components/SearchAppointments';
 import ListAppointments from '../components/ListAppointments';
 import '../css/App.css';
 import { v4 as uuidv4 } from 'uuid';
-import { without } from 'lodash';
+import { without, findIndex } from 'lodash';
 
 class App extends Component {
   constructor() {
@@ -20,6 +20,7 @@ class App extends Component {
     };
 
     this.changeOrder = this.changeOrder.bind(this);
+    this.updateInfo = this.updateInfo.bind(this);
   }
 
   componentDidMount() {
@@ -76,6 +77,17 @@ class App extends Component {
   searchApts = (value) => {
     this.setState({ queryText: value });
   };
+
+  updateInfo(name, value, id) {
+    let tempApts = this.state.myAppointments;
+    let aptIndex = findIndex(this.state.myAppointments, {
+      aptId: id,
+    });
+    tempApts[aptIndex][name] = value;
+    this.setState({
+      myAppointments: tempApts,
+    });
+  }
 
   render() {
     let order;
@@ -136,6 +148,7 @@ class App extends Component {
                     appointments={filteredApts}
                     delAppointment={this.delAppointment.bind(this)}
                     editAppointment={this.state.editAppointment}
+                    updateInfo={this.updateInfo}
                   />
                 </div>
               </div>
