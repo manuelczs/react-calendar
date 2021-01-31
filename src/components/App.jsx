@@ -24,7 +24,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('https://manux.ar/data.json')
+    fetch('https://manux.ar/reactcalendar/data.json')
       .then((response) => response.json())
       .then((result) => {
         const apts = result.map((item) => {
